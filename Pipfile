@@ -4,6 +4,7 @@ verify_ssl = true
 name = "pypi"
 
 [packages]
+notion = {git = "git://github.com/neneka/notion-py.git"}
 
 [dev-packages]
 
