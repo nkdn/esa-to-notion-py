@@ -8,6 +8,7 @@ notion = {git = "git://github.com/neneka/notion-py.git"}
 python-dotenv = "*"
 requests = "*"
 emoji = "*"
+pillow = "*"
 
 [dev-packages]
 
