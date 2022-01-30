@@ -1,3 +1,4 @@
+import emoji
 from notion.block import (
     HeaderBlock,
     TextBlock,
@@ -13,7 +14,7 @@ def main():
     print(page)
 
     page.children.add_new(HeaderBlock, title="はじめに")
-    text = "まず、`.env` ファイルをコピーしてください。\nそれが**とても大事** :exclamation: です。"
+    text = emoji.emojize("まず、`.env` ファイルをコピーしてください。\nそれが**とても大事** :exclamation: です。", use_aliases=True)
     page.children.add_new(TextBlock, title=text)
     image = page.children.add_new(ImageBlock)
     image.upload_file_bin(requests.get("https://upload.wikimedia.org/wikipedia/commons/e/ef/StarfieldSimulation004.gif").content, "sample.gif", "image/gif")
