@@ -1,7 +1,7 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "eee19e82a5a48b3c5576986a0eadac5bd7ae45f08059533f8cc99284934001cd"
+            "sha256": "b9860d8cd8c5ea9b3994a455c4e73da2550c9ca4f3dd1f505ee4a4e5bd46a2ea"
         },
         "pipfile-spec": 6,
         "requires": {
@@ -69,6 +69,14 @@
         "notion": {
             "git": "git://github.com/neneka/notion-py.git",
             "ref": "1fc26287eed291b12d631d9d78f245d65e5d9b11"
+        },
+        "python-dotenv": {
+            "hashes": [
+                "sha256:32b2bdc1873fd3a3c346da1c6db83d0053c3c62f28f1f38516070c4c8971b1d3",
+                "sha256:a5de49a31e953b45ff2d2fd434bbc2670e8db5273606c1e737cc6b93eff3655f"
+            ],
+            "index": "pypi",
+            "version": "==0.19.2"
         },
         "python-slugify": {
             "hashes": [

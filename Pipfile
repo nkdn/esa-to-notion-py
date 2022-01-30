@@ -5,6 +5,7 @@ name = "pypi"
 
 [packages]
 notion = {git = "git://github.com/neneka/notion-py.git"}
+python-dotenv = "*"
 
 [dev-packages]
 
