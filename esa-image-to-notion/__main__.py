@@ -32,7 +32,13 @@ def main():
         esa_notion_mapping[esa_id] = page_id
 
         for block in children:
-            reupload_image_recursively(block)
+            for retry_count in range(30): # 通信エラーで死ににくいようにリトライ処理
+                try:
+                    reupload_image_recursively(block)
+                except Exception as e:
+                    print(e, flush=True)
+                else:
+                    break
 
     print(esa_notion_mapping, flush=True)
     print("処理数: %d" % len(esa_notion_mapping.keys()), flush=True)

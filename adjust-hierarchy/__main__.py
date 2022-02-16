@@ -35,18 +35,23 @@ def add_root_and_move(parent_page, layer=1):
         # else:
         #     new_page_title = "/".join(splitted_title[1:])
 
-        same_title_blocks = list(
-            filter(lambda root_block: root_block.title == root_title, root_blocks))
-        if len(same_title_blocks):
-            exists_root_block = same_title_blocks[0]
-            block.move_to(exists_root_block)
-            block.title = new_page_title
-        else:
-            root_block = children.add_new(PageBlock, title=root_title)
-            root_blocks.append(root_block)
-            print("=== Added '%s' page ===" % root_title, flush=True)
-            block.move_to(root_block)
-            block.title = new_page_title
+        same_title_blocks = list(filter(lambda root_block: root_block.title == root_title, root_blocks))
+        for retry_count in range(30): # 通信エラーで死ににくいようにリトライ処理
+            try:
+                if len(same_title_blocks):
+                    exists_root_block = same_title_blocks[0]
+                    block.move_to(exists_root_block)
+                    block.title = new_page_title
+                else:
+                    root_block = children.add_new(PageBlock, title=root_title)
+                    root_blocks.append(root_block)
+                    print("=== Added '%s' page ===" % root_title, flush=True)
+                    block.move_to(root_block)
+                    block.title = new_page_title
+            except Exception as e:
+                print(e, flush=True)
+            else:
+                break
         print(new_page_title, flush=True)
 
     if layer <= MAX_LAYER:

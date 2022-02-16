@@ -42,7 +42,13 @@ def main():
         print("%s (%s)" % (page.title, page_id))
 
         for block in page.children:
-            change_url_recursively(block, esa_notion_mapping)
+            for retry_count in range(30): # 通信エラーで死ににくいようにリトライ処理
+                try:
+                    change_url_recursively(block, esa_notion_mapping)
+                except Exception as e:
+                    print(e, flush=True)
+                else:
+                    break
 
     print("Successfully completed!!", flush=True)
 
