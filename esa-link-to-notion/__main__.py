@@ -21,7 +21,7 @@ def main():
 
     client = NotionClient(token_v2=settings.NOTION_TOKEN_V2)
     parent_page = client.get_block(parent_page_id)
-    print(parent_page.children)
+    print(parent_page.children, flush=True)
 
     for block in parent_page.children:
         change_url_recursively(block, esa_notion_mapping)
@@ -58,9 +58,9 @@ def change_url_recursively(block, esa_notion_mapping):
                     notion_id = esa_notion_mapping[esa_id]
                     return "https://www.notion.so/%s" % notion_id
 
-                print(title)
+                print(title, flush=True)
                 title = pattern.sub(replace_method, title)
-                print(title)
+                print(title, flush=True)
                 block.title = title
     else:
         for child_block in block.children:
