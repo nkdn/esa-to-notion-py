@@ -15,7 +15,7 @@ def main():
         if type(block) == ImageBlock:
             url = block.source
 
-            if url.startswith("https://img.esa.io"):
+            if url.startswith("https://img.esa.io") or url.startswith("https://i.gyazo.com"):
                 wrapper.upload_image_by_url(image_block=block, url=url)
 
 main()
