@@ -27,10 +27,12 @@ def add_root_and_move(parent_page, layer=1):
         if len(splitted_title) == 1: continue
         root_title = splitted_title[0]
 
-        if layer <= MAX_LAYER:
-            new_page_title = "::".join(splitted_title[1:])
-        else:
-            new_page_title = "/".join(splitted_title[1:])
+        # 最終階層はスラッシュ区切りにするか迷う……
+        new_page_title = "::".join(splitted_title[1:])
+        # if layer <= MAX_LAYER:
+        #     new_page_title = "::".join(splitted_title[1:])
+        # else:
+        #     new_page_title = "/".join(splitted_title[1:])
 
         same_title_blocks = list(
             filter(lambda root_block: root_block.title == root_title, root_blocks))
