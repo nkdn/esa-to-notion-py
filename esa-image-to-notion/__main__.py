@@ -31,6 +31,9 @@ def main():
         esa_id = int(children[0].title.replace("ID: ", ""))
         esa_notion_mapping[esa_id] = page_id
 
+        for block in children:
+            reupload_image_recursively(block)
+
     print(esa_notion_mapping, flush=True)
     print("処理数: %d" % len(esa_notion_mapping.keys()), flush=True)
 
