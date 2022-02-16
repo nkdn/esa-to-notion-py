@@ -1,8 +1,13 @@
-# Notion Test
+# esa-to-notion-py
 
-https://scrapbox.io/ci7lus/Notion(%E9%9D%9E%E5%85%AC%E9%96%8B)API%E3%81%A7%E7%94%BB%E5%83%8F%E3%82%92%E3%82%A2%E3%83%83%E3%83%97%E3%83%AD%E3%83%BC%E3%83%89%E3%81%99%E3%82%8B
+esa → Notion への移行に関して、  
+https://github.com/nekonenene/esa-dumper-for-notion で esa からエクスポートして  
+Notion に HTML をインポートするところまでは進められる。
 
-を参考に Notion をいじってみる。
+このリポジトリではそのインポートが終わった後の、  
+Notion の各記事の調整をおこなう。
+
+感謝: https://scrapbox.io/ci7lus/Notion(%E9%9D%9E%E5%85%AC%E9%96%8B)API%E3%81%A7%E7%94%BB%E5%83%8F%E3%82%92%E3%82%A2%E3%83%83%E3%83%97%E3%83%AD%E3%83%BC%E3%83%89%E3%81%99%E3%82%8B
 
 
 ## 準備
@@ -59,4 +64,14 @@ python esa-image-to-notion 1234567890abcdef1234567890abcdef
 
 ```sh
 python esa-link-to-notion 1234567890abcdef1234567890abcdef
+```
+
+### 階層構造を作成する
+
+https://github.com/nekonenene/esa-dumper-for-notion によって、  
+インポートしやすいよう１ディレクトリにエクスポートしてから Notion にはインポートした。  
+ただ、１階層にまとまっていると扱いづらいので階層を分ける。（３階層まで掘る。変更したい場合は MAX_LAYER 定数を変えること）
+
+```sh
+python adjust-hierarchy 1234567890abcdef1234567890abcdef
 ```
