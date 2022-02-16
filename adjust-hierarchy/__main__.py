@@ -41,7 +41,7 @@ def add_root_and_move(parent_page, layer=1):
         else:
             root_block = children.add_new(PageBlock, title=root_title)
             root_blocks.append(root_block)
-            print("Added '%s' page" % root_title, flush=True)
+            print("=== Added '%s' page ===" % root_title, flush=True)
             block.move_to(root_block)
             block.title = new_page_title
         print(new_page_title, flush=True)
