@@ -13,8 +13,14 @@ ESA_POST_PATTERN = r'https://[^\.]+\.esa\.io/posts/(\d+)'
 def main():
     with open("mapping.txt") as f:
         lines = f.readlines()
-    dict_str = "\n".join(lines)
-    esa_notion_mapping = ast.literal_eval(dict_str)
+    esa_notion_mapping = dict()
+
+    for line in lines:
+        dict_str = line.strip()
+        if len(dict_str) == 0: continue
+        mapping = ast.literal_eval(dict_str)
+        esa_notion_mapping.update(mapping)
+    print("mapping の組み合わせ数: %d" % len(esa_notion_mapping.keys()), flush=True)
 
     args = sys.argv
     parent_page_id = args[1]
@@ -32,7 +38,7 @@ def main():
     #     if type(block) == PageBlock:
     #         child_page_ids.append(block.id)
 
-    # print("処理する件数: %d" % len(child_page_ids))
+    # print("処理する件数: %d" % len(child_page_ids), flush=True)
 
     # for page_id in child_page_ids:
     #     page_id = page_id.replace("-", "")
@@ -43,7 +49,7 @@ def main():
     #     esa_id = int(children[0].title.replace("ID: ", ""))
 
     #     for block in children:
-    #         change_url_recursively(block)
+    #         change_url_recursively(block, esa_notion_mapping)
 
 # block 内にさらに block がある場合も再帰的に ImageBlock を探し、Notion 向けに画像アップロードをおこなう
 def change_url_recursively(block, esa_notion_mapping):
