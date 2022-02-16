@@ -42,10 +42,20 @@ pipenv install
 
 をおこないます。
 
-それが終わったら
+
+### esa にアップロードされた画像を Notion に上げ直し
 
 ```sh
 python esa-image-to-notion 1234567890abcdef1234567890abcdef
 ```
 
-で実行できます。
+この実行時に出力される esa_notion_mapping 変数の中身を  
+`mapping.txt` として保存します。次の工程で使います。
+
+### リンクを esa から Notion のものに変換
+
+トップディレクトリに `mapping.txt` を先に用意しておきます。
+
+```sh
+python esa-link-to-notion 1234567890abcdef1234567890abcdef
+```
