@@ -54,7 +54,8 @@ python esa-image-to-notion 1234567890abcdef1234567890abcdef
 
 ### リンクを esa から Notion のものに変換
 
-トップディレクトリに `mapping.txt` を先に用意しておきます。
+トップディレクトリに `mapping.txt` を先に用意しておきます。  
+マッピングにない esa の記事 ID が出てきた場合は URL の変換がおこなわれません。
 
 ```sh
 python esa-link-to-notion 1234567890abcdef1234567890abcdef
