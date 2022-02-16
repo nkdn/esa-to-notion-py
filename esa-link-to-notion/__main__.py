@@ -54,8 +54,12 @@ def change_url_recursively(block, esa_notion_mapping):
             if pattern.search(title):
                 def replace_method(matched):
                     esa_id = int(matched.group(1))
-                    notion_id = esa_notion_mapping[esa_id]
-                    return "https://www.notion.so/%s" % notion_id
+                    notion_id = esa_notion_mapping.get(esa_id, None)
+                    if notion_id == None:
+                        # マッピングが見つからない場合はリンクをそのまま残す
+                        return matched.group(0)
+                    else:
+                        return "https://www.notion.so/%s" % notion_id
 
                 print("- %s" % title, flush=True)
                 title = pattern.sub(replace_method, title)
