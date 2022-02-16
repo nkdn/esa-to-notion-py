@@ -45,7 +45,7 @@ pipenv install
 それが終わったら
 
 ```sh
-python notion-test
+python esa-image-to-notion 1234567890abcdef1234567890abcdef
 ```
 
 で実行できます。

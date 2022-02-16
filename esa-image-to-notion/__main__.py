@@ -3,11 +3,15 @@ from notion.block import (
 )
 from notion.client import NotionClient
 import settings
+import sys
 import wrapper
 
 def main():
+    args = sys.argv
+    page_id = args[1]
+
     client = NotionClient(token_v2=settings.NOTION_TOKEN_V2)
-    page = client.get_block("05463d2c8f4b49078b9070f37643089f")
+    page = client.get_block(page_id)
     children = page.children
     print(children)
 
