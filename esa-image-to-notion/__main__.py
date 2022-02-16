@@ -1,5 +1,6 @@
 from notion.block import (
-    ImageBlock
+    ImageBlock,
+    PageBlock
 )
 from notion.client import NotionClient
 import settings
@@ -8,10 +9,17 @@ import wrapper
 
 def main():
     args = sys.argv
-    page_id = args[1]
+    parent_page_id = args[1]
 
     client = NotionClient(token_v2=settings.NOTION_TOKEN_V2)
-    child_page_ids = client.search_pages_with_parent(page_id)
+    parent_page = client.get_block(parent_page_id)
+    child_page_ids = []
+
+    for block in parent_page.children:
+        if type(block) == PageBlock:
+            child_page_ids.append(block.id)
+
+    print("処理する件数: %d" % len(child_page_ids))
     esa_notion_mapping = dict()
 
     for page_id in child_page_ids:
