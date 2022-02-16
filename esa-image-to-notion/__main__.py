@@ -36,6 +36,7 @@ def main():
 
     print(esa_notion_mapping, flush=True)
     print("処理数: %d" % len(esa_notion_mapping.keys()), flush=True)
+    print("Successfully completed!!", flush=True)
 
 # block 内にさらに block がある場合も再帰的に ImageBlock を探し、Notion 向けに画像アップロードをおこなう
 def reupload_image_recursively(block):

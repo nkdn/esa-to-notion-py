@@ -44,6 +44,8 @@ def main():
         for block in page.children:
             change_url_recursively(block, esa_notion_mapping)
 
+    print("Successfully completed!!", flush=True)
+
 # block 内にさらに block がある場合も再帰的に Block を探し、esa の記事URLを Notion の記事URLに書き換える
 def change_url_recursively(block, esa_notion_mapping):
     if len(block.children) == 0:

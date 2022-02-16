@@ -14,6 +14,7 @@ def main():
     client = NotionClient(token_v2=settings.NOTION_TOKEN_V2)
     parent_page = client.get_block(parent_page_id)
     add_root_and_move(parent_page)
+    print("Successfully completed!!", flush=True)
 
 def add_root_and_move(parent_page, layer=1):
     children = parent_page.children
