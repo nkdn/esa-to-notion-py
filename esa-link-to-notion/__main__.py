@@ -11,6 +11,9 @@ import sys
 ESA_POST_PATTERN = r'https://[^\.]+\.esa\.io/posts/(\d+)'
 
 def main():
+    args = sys.argv
+    parent_page_id = args[1]
+
     with open("mapping.txt") as f:
         lines = f.readlines()
     esa_notion_mapping = dict()
@@ -22,36 +25,26 @@ def main():
         esa_notion_mapping.update(mapping)
     print("mapping の組み合わせ数: %d" % len(esa_notion_mapping.keys()), flush=True)
 
-    args = sys.argv
-    parent_page_id = args[1]
-
     client = NotionClient(token_v2=settings.NOTION_TOKEN_V2)
     parent_page = client.get_block(parent_page_id)
-    print(parent_page.children, flush=True)
+
+    child_page_ids = []
 
     for block in parent_page.children:
-        change_url_recursively(block, esa_notion_mapping)
+        if type(block) == PageBlock:
+            child_page_ids.append(block.id)
 
-    # child_page_ids = []
+    print("処理する記事数: %d" % len(child_page_ids), flush=True)
 
-    # for block in parent_page.children:
-    #     if type(block) == PageBlock:
-    #         child_page_ids.append(block.id)
+    for page_id in child_page_ids:
+        page_id = page_id.replace("-", "")
+        page = client.get_block(page_id)
+        print("%s (%s)" % (page.title, page_id))
 
-    # print("処理する件数: %d" % len(child_page_ids), flush=True)
+        for block in page.children:
+            change_url_recursively(block, esa_notion_mapping)
 
-    # for page_id in child_page_ids:
-    #     page_id = page_id.replace("-", "")
-    #     page = client.get_block(page_id)
-    #     print("%s (%s)" % (page.title, page_id))
-
-    #     children = page.children
-    #     esa_id = int(children[0].title.replace("ID: ", ""))
-
-    #     for block in children:
-    #         change_url_recursively(block, esa_notion_mapping)
-
-# block 内にさらに block がある場合も再帰的に ImageBlock を探し、Notion 向けに画像アップロードをおこなう
+# block 内にさらに block がある場合も再帰的に Block を探し、esa の記事URLを Notion の記事URLに書き換える
 def change_url_recursively(block, esa_notion_mapping):
     if len(block.children) == 0:
         if isinstance(block, BasicBlock):

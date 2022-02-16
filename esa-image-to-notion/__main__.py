@@ -19,7 +19,7 @@ def main():
         if type(block) == PageBlock:
             child_page_ids.append(block.id)
 
-    print("処理する件数: %d" % len(child_page_ids), flush=True)
+    print("処理する記事数: %d" % len(child_page_ids), flush=True)
     esa_notion_mapping = dict()
 
     for page_id in child_page_ids:
