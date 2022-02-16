@@ -27,6 +27,7 @@ def main():
             reupload_image_recursively(block)
 
     print(esa_notion_mapping)
+    print("処理数: %d" % len(esa_notion_mapping.keys()))
 
 # block 内にさらに block がある場合も再帰的に ImageBlock を探し、Notion 向けに画像アップロードをおこなう
 def reupload_image_recursively(block):
