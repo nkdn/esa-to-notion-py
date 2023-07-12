@@ -22,11 +22,13 @@ def main():
 
     print("処理する記事数: %d" % len(child_page_ids), flush=True)
     esa_notion_mapping = dict()
+    count = 0
 
     for page_id in child_page_ids:
+        count += 1
         page_id = page_id.replace("-", "")
         page = client.get_block(page_id)
-        print("%s (%s)" % (page.title, page_id), flush=True)
+        print("%s / %s, %s (%s)" % (count , len(child_page_ids), page.title, page_id), flush=True)
 
         children = page.children
         esa_id = int(children[0].title.replace("ID: ", ""))
