@@ -52,7 +52,7 @@ def reupload_image_recursively(block):
         if type(block) == ImageBlock:
             url = block.source
 
-            if url.startswith("https://img.esa.io") or url.startswith("https://i.gyazo.com"):
+            if url.startswith("https://img.esa.io") or url.startswith("https://esa-storage-tokyo.s3-ap-northeast-1.amazonaws.com"):
                 if url.endswith(".svg"): return # SVG ファイルは PIL.UnidentifiedImageError が起こるのでスルー
                 print("Re-uploading %s ..." % url, flush=True)
                 wrapper.upload_image_by_url(image_block=block, url=url)
