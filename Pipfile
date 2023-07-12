@@ -4,7 +4,7 @@ verify_ssl = true
 name = "pypi"
 
 [packages]
-notion = {git = "git://github.com/neneka/notion-py.git"}
+notion = {git = "https://github.com/nkdn/notion-py.git"}
 python-dotenv = "*"
 requests = "*"
 emoji = "*"
