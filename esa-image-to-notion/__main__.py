@@ -6,6 +6,7 @@ from notion.client import NotionClient
 import settings
 import sys
 import wrapper
+import traceback
 
 def main():
     args = sys.argv
@@ -37,6 +38,7 @@ def main():
                     reupload_image_recursively(block)
                 except Exception as e:
                     print(e, flush=True)
+                    print(traceback.format_exc())
                 else:
                     break
 
