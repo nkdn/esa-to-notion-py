@@ -7,6 +7,7 @@ import settings
 import sys
 import wrapper
 import traceback
+import time
 
 def main():
     args = sys.argv
@@ -41,6 +42,8 @@ def main():
                 except Exception as e:
                     print(e, flush=True)
                     print(traceback.format_exc())
+                    # APIのリミットに引っかかった場合は5分待つ
+                    time.sleep(60 * 5)
                 else:
                     break
 
